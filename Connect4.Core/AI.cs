@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Connect4.Core
 {
     public class AI
     {
         private readonly int _depth;
+        private List<Tuple<int, int>> _moves;
 
         public AI(Game.Difficulty diff)
         {
@@ -12,11 +15,21 @@ namespace Connect4.Core
         }
 
         public AI() : this(Game.Difficulty.Medium) { }
-         
+
         public int FindMove(Board board)
         {
-            var bestMove = MinMax(_depth, board, false);
-            return bestMove;
+            _moves = new List<Tuple<int, int>>();
+            for (int i = 0; i < board.Columns; i++)
+            {
+                if (!board.DropCoin(Game.Player.Computer, i)) continue;
+                _moves.Add(Tuple.Create(i, MinMax(_depth, board, false)));
+                board.RemoveCoin(i);
+            }
+
+            var random = new Random();
+            var maxMoveScore = _moves.Max(t => t.Item2);
+            var bestMoves = _moves.Where(t => t.Item2 == maxMoveScore).ToList();
+            return bestMoves[random.Next(0, bestMoves.Count)].Item1;
         }
 
         private int MinMax(int depth, Board board, bool player)

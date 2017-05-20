@@ -9,12 +9,14 @@ namespace Connect4.Core
     {
         private static Player _player;
         private static AI _ai;
-        private static Random _random;
+		
         private static Board _board;
-        public static Board Board => _board;
+        public static Board Board => _board;  
+		private static int _boardWidth, _boardHeight;
+		
         private static bool _gameOver;
         public static bool GameOver => _gameOver;
-        private static int _boardWidth, _boardHeight;
+      
 
         public static void GameInitiaize(int width, int height, 
             bool versusAI, bool first, int difficulty = 1)
@@ -26,7 +28,7 @@ namespace Connect4.Core
             _boardWidth = width;
             _boardHeight = height;
             _board = new Board(_boardWidth, _boardHeight);
-            _random = new Random();
+			
             switch (difficulty)
             {
                 case 0: diff = Difficulty.Easy;
@@ -52,29 +54,16 @@ namespace Connect4.Core
             {
                 if (!_board.DropCoin(_player, move)) return false;
                 _player = ~_player;
-            }
-
-            if (_board.FullBoard)
-            {
-                _gameOver = true;
-                GameIsOver();
-                return false;
-            }
-
-            if (_ai != null)
-            {
-                var moves = new List<Tuple<int, int>>();
-                for (int i = 0; i < _board.Columns; i++)
+                if (_board.FullBoard || _board.Winner == Player.Human)
                 {
-                    if (!_board.DropCoin(_player, i))
-                        continue;
-                    moves.Add(Tuple.Create(i, _ai.FindMove(_board)));
-                    _board.RemoveCoin(i);
+                    _gameOver = true;
+                    GameIsOver();
+                    return false;
                 }
-
-                var maxMoveScore = moves.Max(t => t.Item2);
-                var bestMoves = moves.Where(t => t.Item2 == maxMoveScore).ToList();
-                _board.DropCoin(_player, bestMoves[_random.Next(0, bestMoves.Count)].Item1);
+            }
+            if(_ai != null)
+            {
+                _board.DropCoin(_player, _ai.FindMove(_board));
                 _player = ~_player;
             }
 
@@ -108,9 +97,9 @@ namespace Connect4.Core
 
         public enum Difficulty
         {
-            Easy = 3,
-            Medium = 5,
-            Hard = 7
+            Easy = 2,
+            Medium = 4,
+            Hard = 6
         }
     }
 }
