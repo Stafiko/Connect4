@@ -21,14 +21,15 @@ namespace Connect4.Core
         public static void GameInitiaize(int width, int height, 
             bool versusAI, bool first, int difficulty = 1)
         {
-            var diff = Difficulty.Medium;
             _ai = null;
             _gameOver = false;
             _player = Player.Human;
             _boardWidth = width;
             _boardHeight = height;
             _board = new Board(_boardWidth, _boardHeight);
-			
+
+            if (!versusAI) return;
+            Difficulty diff;
             switch (difficulty)
             {
                 case 0: diff = Difficulty.Easy;
@@ -37,8 +38,9 @@ namespace Connect4.Core
                     break;
                 case 2: diff = Difficulty.Hard;
                     break;
+                default: diff = Difficulty.Medium;
+                    break;
             }
-            if (!versusAI) return;
             _ai = new AI(diff);
 
             if (first) return;
