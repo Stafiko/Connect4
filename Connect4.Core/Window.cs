@@ -19,8 +19,10 @@ namespace Connect4.Core
         public Window()
         {
             InitializeComponent();
+
             FieldSizes.SelectedIndex = 0;
             Difficulty.SelectedIndex = 1;
+            Algorithm.SelectedIndex = 1;
             Radio1P.Checked = true;
             CheckFirstMove.Checked = true;
         }
@@ -29,7 +31,7 @@ namespace Connect4.Core
         {
             _enabled = enable;
             Radio1P.Enabled = Radio2P.Enabled = FieldSizes.Enabled = 
-            Difficulty.Enabled = CheckFirstMove.Enabled = !enable;
+            Difficulty.Enabled = Algorithm.Enabled = CheckFirstMove.Enabled = !enable;
             Field.Enabled = enable;
 
             if(!enable) Select1P();
@@ -38,7 +40,7 @@ namespace Connect4.Core
 
         private void Select1P(object sender = null, EventArgs e = null)
         {
-            CheckFirstMove.Enabled = Difficulty.Enabled = Radio1P.Checked;
+            CheckFirstMove.Enabled = Difficulty.Enabled = Algorithm.Enabled = Radio1P.Checked;
         }
 
         private void SelectField(object sender, EventArgs e)
@@ -75,7 +77,7 @@ namespace Connect4.Core
             {
                 Game.GameInitiaize(width, height, 
                     Radio1P.Checked, CheckFirstMove.Checked,
-                    Difficulty.SelectedIndex + 1);
+                    Difficulty.SelectedIndex + 1, Algorithm.SelectedIndex);
                 InititalizeField(width, height);
                 BuildField(Game.Board.Fields);
                 EnableGame(true);

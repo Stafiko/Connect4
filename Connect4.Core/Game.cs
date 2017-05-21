@@ -48,7 +48,7 @@ namespace Connect4.Core
                 {
                     _gameOver = true;
                     GameIsOver();
-                    return false;
+                    return true;
                 }
             }
             if(_ai != null)

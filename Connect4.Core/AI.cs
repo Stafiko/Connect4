@@ -24,14 +24,11 @@ namespace Connect4.Core
             _algo = algo;
             switch (algo)
             {
-                case Algorith.AlphaBeta:
-                    _depth = (int) diff * 4;
+                case Algorith.AlphaBeta:_depth = (int) diff * 4;
                     break;
-                case Algorith.MinMax:
-                    _depth = (int) diff * 2;
+                case Algorith.MinMax: _depth = (int) diff * 2;
                     break;
-                default:
-                    _depth = (int) diff;
+                default: _depth = 0;
                     break;
             }
         }
@@ -69,30 +66,24 @@ namespace Connect4.Core
 
         private int MinMax(Board board, int depth, bool player)
         {
-            var winner = board.Winner;
-            if (depth <= 0 || board.FullBoard) return 0;
-            switch (winner)
-            {
-                case Game.Player.Human: return -depth;
-                case Game.Player.Computer: return depth;
-            }
+            if (GameTerminated(depth, board, player, out var score))
+                return score;
 
-            var bestValue = player ? -1 : 1;
+            score = player ? -1 : 1;
             for (int i = 0; i < board.Columns; i++)
             {
                 if (!board.DropCoin(player ? Game.Player.Computer : Game.Player.Human, i)) continue;
                 var minMax = MinMax(board, depth - 1, !player);
-                bestValue = player ? Math.Max(bestValue, minMax) : Math.Min(bestValue, minMax);
+                score = player ? Math.Max(score, minMax) : Math.Min(score, minMax);
                 board.RemoveCoin(i);
             }
 
-            return bestValue;
+            return score;
         }
 
         private int AlphaBeta(Board board, int alpha, int beta, int depth, bool player)
         {
-            int score;
-            if (GameTerminated(depth, board, player, out score))
+            if (GameTerminated(depth, board, player, out var score))
                 return score;
             score = beta;
 
@@ -115,19 +106,15 @@ namespace Connect4.Core
             switch (winner)
             {
                 case Game.Player.Human:
-                    score = player ? 100 : -100;
+                    score = player ? depth : -depth;
+                    if (_algo == Algorith.MinMax) score = -depth;
                     return true;
                 case Game.Player.Computer:
-                    score = player ? -100 : 100;
+                    score = player ? -depth : depth;
+                    if (_algo == Algorith.MinMax) score = depth;
                     return true;
             }
-            score = Heuristic(board);
             return depth <= 0;
-        }
-
-        private int Heuristic(Board board)
-        {
-            return -1;
         }
     }
 }

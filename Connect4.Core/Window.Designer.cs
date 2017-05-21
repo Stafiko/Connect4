@@ -40,9 +40,11 @@
             this.FieldWidth = new System.Windows.Forms.TextBox();
             this.LabelX = new System.Windows.Forms.Label();
             this.Settings = new System.Windows.Forms.Panel();
-            this.Field = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.Difficulty = new System.Windows.Forms.ComboBox();
+            this.LabelDifficulty = new System.Windows.Forms.Label();
+            this.Field = new System.Windows.Forms.Panel();
+            this.Algorithm = new System.Windows.Forms.ComboBox();
+            this.LabelAlgo = new System.Windows.Forms.Label();
             this.Settings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,9 +103,9 @@
             // 
             // ButtonStart
             // 
-            this.ButtonStart.Location = new System.Drawing.Point(12, 303);
+            this.ButtonStart.Location = new System.Drawing.Point(12, 362);
             this.ButtonStart.Name = "ButtonStart";
-            this.ButtonStart.Size = new System.Drawing.Size(537, 23);
+            this.ButtonStart.Size = new System.Drawing.Size(593, 23);
             this.ButtonStart.TabIndex = 5;
             this.ButtonStart.Text = "MAY THE BATTLE BEGIN";
             this.ButtonStart.UseVisualStyleBackColor = true;
@@ -163,8 +165,10 @@
             // 
             this.Settings.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.Settings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Settings.Controls.Add(this.Algorithm);
+            this.Settings.Controls.Add(this.LabelAlgo);
             this.Settings.Controls.Add(this.Difficulty);
-            this.Settings.Controls.Add(this.label1);
+            this.Settings.Controls.Add(this.LabelDifficulty);
             this.Settings.Controls.Add(this.LabelSettings);
             this.Settings.Controls.Add(this.LabelX);
             this.Settings.Controls.Add(this.Radio1P);
@@ -177,26 +181,8 @@
             this.Settings.Controls.Add(this.FieldSizes);
             this.Settings.Location = new System.Drawing.Point(12, 12);
             this.Settings.Name = "Settings";
-            this.Settings.Size = new System.Drawing.Size(157, 285);
+            this.Settings.Size = new System.Drawing.Size(157, 344);
             this.Settings.TabIndex = 11;
-            // 
-            // Field
-            // 
-            this.Field.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.Field.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Field.Location = new System.Drawing.Point(176, 12);
-            this.Field.Name = "Field";
-            this.Field.Size = new System.Drawing.Size(373, 285);
-            this.Field.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 224);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Сложность компьютера";
             // 
             // Difficulty
             // 
@@ -211,11 +197,51 @@
             this.Difficulty.Size = new System.Drawing.Size(121, 21);
             this.Difficulty.TabIndex = 12;
             // 
+            // LabelDifficulty
+            // 
+            this.LabelDifficulty.AutoSize = true;
+            this.LabelDifficulty.Location = new System.Drawing.Point(14, 225);
+            this.LabelDifficulty.Name = "LabelDifficulty";
+            this.LabelDifficulty.Size = new System.Drawing.Size(129, 13);
+            this.LabelDifficulty.TabIndex = 11;
+            this.LabelDifficulty.Text = "Сложность компьютера";
+            // 
+            // Field
+            // 
+            this.Field.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.Field.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Field.Location = new System.Drawing.Point(176, 12);
+            this.Field.Name = "Field";
+            this.Field.Size = new System.Drawing.Size(429, 344);
+            this.Field.TabIndex = 12;
+            // 
+            // Algorithm
+            // 
+            this.Algorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Algorithm.FormattingEnabled = true;
+            this.Algorithm.Items.AddRange(new object[] {
+            "Случайный",
+            "МиниМакс",
+            "Альфа-Бета"});
+            this.Algorithm.Location = new System.Drawing.Point(14, 297);
+            this.Algorithm.Name = "Algorithm";
+            this.Algorithm.Size = new System.Drawing.Size(121, 21);
+            this.Algorithm.TabIndex = 14;
+            // 
+            // LabelAlgo
+            // 
+            this.LabelAlgo.AutoSize = true;
+            this.LabelAlgo.Location = new System.Drawing.Point(14, 281);
+            this.LabelAlgo.Name = "LabelAlgo";
+            this.LabelAlgo.Size = new System.Drawing.Size(56, 13);
+            this.LabelAlgo.TabIndex = 13;
+            this.LabelAlgo.Text = "Алгоритм";
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 338);
+            this.ClientSize = new System.Drawing.Size(614, 389);
             this.Controls.Add(this.Field);
             this.Controls.Add(this.Settings);
             this.Controls.Add(this.ButtonStart);
@@ -245,7 +271,9 @@
         private System.Windows.Forms.Panel Field;
         private System.Windows.Forms.RadioButton RadioAI;
         private System.Windows.Forms.ComboBox Difficulty;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelDifficulty;
+        private System.Windows.Forms.ComboBox Algorithm;
+        private System.Windows.Forms.Label LabelAlgo;
     }
 }
 
