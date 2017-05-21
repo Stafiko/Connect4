@@ -97,8 +97,8 @@ namespace Connect4.Core
             _cellWidth = Field.Width / width;
             _cellHeight = Field.Height / height;
             _field = new PictureBox[_fieldHeight, _fieldWidth];
-            _white = Image.FromFile(@"white.png");
-            _black = Image.FromFile(@"black.png");
+            _white = Image.FromFile(@"..\..\Coins\white.png");
+            _black = Image.FromFile(@"..\..\Coins\black.png");
             for (int i = 0; i < _fieldHeight; i++)
             {
                 for (int j = 0; j < _fieldWidth; j++)
