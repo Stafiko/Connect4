@@ -17,7 +17,7 @@ namespace Connect4.Core
       
 
         public static void GameInitiaize(int width, int height, 
-            bool versusAI, bool first, int difficulty = 1)
+            bool versusAI, bool first, int difficulty = 2, int algo = 2)
         {
             _ai = null;
             _gameOver = false;
@@ -27,19 +27,9 @@ namespace Connect4.Core
             _board = new Board(_boardWidth, _boardHeight);
 
             if (!versusAI) return;
-            Difficulty diff;
-            switch (difficulty)
-            {
-                case 0: diff = Difficulty.Easy;
-                    break;
-                case 1: diff = Difficulty.Medium;
-                    break;
-                case 2: diff = Difficulty.Hard;
-                    break;
-                default: diff = Difficulty.Medium;
-                    break;
-            }
-            _ai = new AI(diff);
+            var diff = (Difficulty)difficulty;
+            var alg = (AI.Algorith)algo;
+            _ai = new AI(diff, alg);
 
             if (first) return;
             _player = Player.Computer;
@@ -97,9 +87,9 @@ namespace Connect4.Core
 
         public enum Difficulty
         {
-            Easy = 3,
-            Medium = 6,
-            Hard = 9
+            Easy = 1,
+            Medium = 2,
+            Hard = 3
         }
     }
 }

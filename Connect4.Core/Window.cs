@@ -73,7 +73,9 @@ namespace Connect4.Core
             }
             if (!_enabled)
             {
-                Game.GameInitiaize(width, height, Radio1P.Checked, CheckFirstMove.Checked, Difficulty.SelectedIndex);
+                Game.GameInitiaize(width, height, 
+                    Radio1P.Checked, CheckFirstMove.Checked,
+                    Difficulty.SelectedIndex + 1);
                 InititalizeField(width, height);
                 BuildField(Game.Board.Fields);
                 EnableGame(true);
