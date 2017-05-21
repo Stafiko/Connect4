@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Connect4.Core
@@ -99,9 +97,9 @@ namespace Connect4.Core
 
         public enum Difficulty
         {
-            Easy = 2,
-            Medium = 4,
-            Hard = 6
+            Easy = 3,
+            Medium = 6,
+            Hard = 9
         }
     }
 }
