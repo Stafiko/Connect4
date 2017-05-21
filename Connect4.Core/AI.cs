@@ -51,6 +51,14 @@ namespace Connect4.Core
             }
             return score;
 
+            //MinMax algo
+            //var winner = board.Winner;
+            //if (depth <= 0 || board.FullBoard) return 0;
+            //switch (winner)
+            //{
+            //    case Game.Player.Human: return -depth;
+            //    case Game.Player.Computer: return depth;
+            //}
             //var bestValue = player ? -1 : 1;
             //for (int i = 0; i < board.Columns; i++)
             //{
