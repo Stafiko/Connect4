@@ -8,7 +8,7 @@ namespace Connect4.Core
     {
         private bool _firstGame = true, _enabled;
         private PictureBox[,] _field;
-        private Image _white, _black;
+        private Image _red, _yellow, _empty;
 
         private int
             _cellWidth,
@@ -101,8 +101,11 @@ namespace Connect4.Core
             _cellWidth = Field.Width / width;
             _cellHeight = Field.Height / height;
             _field = new PictureBox[_fieldHeight, _fieldWidth];
-            _white = Image.FromFile(@"..\..\Coins\white.png");
-            _black = Image.FromFile(@"..\..\Coins\black.png");
+
+            _red = Image.FromFile(@"..\..\Coins\red.png");
+            _yellow = Image.FromFile(@"..\..\Coins\yellow.png");
+            _empty = Image.FromFile(@"..\..\Coins\empty.png");
+
             for (int i = 0; i < _fieldHeight; i++)
             {
                 for (int j = 0; j < _fieldWidth; j++)
@@ -113,9 +116,10 @@ namespace Connect4.Core
                         Size = new Size(_cellWidth, _cellHeight),
                         Top = i * _cellHeight,
                         Left = j * _cellWidth,
-                        BorderStyle = BorderStyle.Fixed3D,
+                        BorderStyle = BorderStyle.None,
                         Tag = j,
-                        SizeMode = PictureBoxSizeMode.StretchImage
+                        SizeMode = PictureBoxSizeMode.StretchImage,
+                        BackColor = Color.RoyalBlue
                     };
                     if (i != 0) continue;
                     _field[i, j].MouseClick += MakeMoveField;
@@ -135,13 +139,13 @@ namespace Connect4.Core
                 switch (field[i, j])
                 {
                     case (int) Game.Player.Human:
-                        _field[j, i].Image = _white;
+                        _field[j, i].Image = _red;
                         break;
                     case (int) Game.Player.Computer:
-                        _field[j, i].Image = _black;
+                        _field[j, i].Image = _yellow;
                         break;
                     default:
-                        _field[j, i].Image = null;
+                        _field[j, i].Image = _empty;
                         break;
                 }
             }
