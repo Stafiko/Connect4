@@ -40,11 +40,11 @@
             this.FieldWidth = new System.Windows.Forms.TextBox();
             this.LabelX = new System.Windows.Forms.Label();
             this.Settings = new System.Windows.Forms.Panel();
+            this.Algorithm = new System.Windows.Forms.ComboBox();
+            this.LabelAlgo = new System.Windows.Forms.Label();
             this.Difficulty = new System.Windows.Forms.ComboBox();
             this.LabelDifficulty = new System.Windows.Forms.Label();
             this.Field = new System.Windows.Forms.Panel();
-            this.Algorithm = new System.Windows.Forms.ComboBox();
-            this.LabelAlgo = new System.Windows.Forms.Label();
             this.Settings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,10 +116,10 @@
             this.FieldSizes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FieldSizes.FormattingEnabled = true;
             this.FieldSizes.Items.AddRange(new object[] {
-            "5 x 5",
-            "6 x 6",
-            "7 x 7",
-            "8 x 8",
+            "7 x 6",
+            "8 x 7",
+            "9 x 7",
+            "10 x 7",
             "Свое"});
             this.FieldSizes.Location = new System.Drawing.Point(14, 154);
             this.FieldSizes.Name = "FieldSizes";
@@ -184,6 +184,28 @@
             this.Settings.Size = new System.Drawing.Size(157, 344);
             this.Settings.TabIndex = 11;
             // 
+            // Algorithm
+            // 
+            this.Algorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Algorithm.FormattingEnabled = true;
+            this.Algorithm.Items.AddRange(new object[] {
+            "Случайный",
+            "МиниМакс",
+            "Альфа-Бета"});
+            this.Algorithm.Location = new System.Drawing.Point(14, 297);
+            this.Algorithm.Name = "Algorithm";
+            this.Algorithm.Size = new System.Drawing.Size(121, 21);
+            this.Algorithm.TabIndex = 14;
+            // 
+            // LabelAlgo
+            // 
+            this.LabelAlgo.AutoSize = true;
+            this.LabelAlgo.Location = new System.Drawing.Point(14, 281);
+            this.LabelAlgo.Name = "LabelAlgo";
+            this.LabelAlgo.Size = new System.Drawing.Size(56, 13);
+            this.LabelAlgo.TabIndex = 13;
+            this.LabelAlgo.Text = "Алгоритм";
+            // 
             // Difficulty
             // 
             this.Difficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -214,28 +236,6 @@
             this.Field.Name = "Field";
             this.Field.Size = new System.Drawing.Size(429, 344);
             this.Field.TabIndex = 12;
-            // 
-            // Algorithm
-            // 
-            this.Algorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Algorithm.FormattingEnabled = true;
-            this.Algorithm.Items.AddRange(new object[] {
-            "Случайный",
-            "МиниМакс",
-            "Альфа-Бета"});
-            this.Algorithm.Location = new System.Drawing.Point(14, 297);
-            this.Algorithm.Name = "Algorithm";
-            this.Algorithm.Size = new System.Drawing.Size(121, 21);
-            this.Algorithm.TabIndex = 14;
-            // 
-            // LabelAlgo
-            // 
-            this.LabelAlgo.AutoSize = true;
-            this.LabelAlgo.Location = new System.Drawing.Point(14, 281);
-            this.LabelAlgo.Name = "LabelAlgo";
-            this.LabelAlgo.Size = new System.Drawing.Size(56, 13);
-            this.LabelAlgo.TabIndex = 13;
-            this.LabelAlgo.Text = "Алгоритм";
             // 
             // Window
             // 

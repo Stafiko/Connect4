@@ -48,16 +48,20 @@ namespace Connect4.Core
             switch (FieldSizes.SelectedIndex)
             {
                 case 0:
-                    FieldWidth.Text = FieldHeight.Text = 5.ToString();
+                    FieldWidth.Text = 7.ToString();
+                    FieldHeight.Text = 6.ToString();
                     break;
                 case 1:
-                    FieldWidth.Text = FieldHeight.Text = 6.ToString();
+                    FieldWidth.Text = 8.ToString();
+                    FieldHeight.Text = 7.ToString();
                     break;
                 case 2:
-                    FieldWidth.Text = FieldHeight.Text = 7.ToString();
+                    FieldWidth.Text = 9.ToString();
+                    FieldHeight.Text = 7.ToString();
                     break;
                 case 3:
-                    FieldWidth.Text = FieldHeight.Text = 8.ToString();
+                    FieldWidth.Text = 10.ToString();
+                    FieldHeight.Text = 7.ToString();
                     break;
                 default:
                     FieldWidth.Enabled = FieldHeight.Enabled = true;
