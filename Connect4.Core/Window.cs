@@ -20,10 +20,8 @@ namespace Connect4.Core
         {
             InitializeComponent();
 
-            FieldSizes.SelectedIndex = 0;
             Difficulty.SelectedIndex = 1;
             Algorithm.SelectedIndex = 1;
-            WinCount.SelectedIndex = 0;
             Radio1P.Checked = true;
             CheckFirstMove.Checked = true;
         }
@@ -31,7 +29,7 @@ namespace Connect4.Core
         private void EnableGame(bool enable)
         {
             _enabled = enable;
-            Radio1P.Enabled = Radio2P.Enabled = FieldSizes.Enabled = WinCount.Enabled = 
+            Radio1P.Enabled = Radio2P.Enabled = WinCount.Enabled = FieldHeight.Enabled = FieldWidth.Enabled = 
             Difficulty.Enabled = Algorithm.Enabled = CheckFirstMove.Enabled = !enable;
             Field.Enabled = enable;
 
@@ -40,57 +38,21 @@ namespace Connect4.Core
         }
 
 
-        private void SelectedWinCount(object sender, EventArgs e)
-        {
-            var selected = WinCount.SelectedIndex;
-            if (selected < 3) WinCountInput.Text = (selected + 4).ToString();
-            else
-            {
-                WinCountInput.Enabled = true;
-                return;
-            }
-            WinCountInput.Enabled = false;
-        }
-
         private void Selected1P(object sender = null, EventArgs e = null)
         {
             CheckFirstMove.Enabled = Difficulty.Enabled = Algorithm.Enabled = Radio1P.Checked;
         }
 
-        private void SelectedField(object sender, EventArgs e)
-        {
-            switch (FieldSizes.SelectedIndex)
-            {
-                case 0:
-                    FieldWidth.Text = 7.ToString();
-                    FieldHeight.Text = 6.ToString();
-                    break;
-                case 1:
-                    FieldWidth.Text = 8.ToString();
-                    FieldHeight.Text = 7.ToString();
-                    break;
-                case 2:
-                    FieldWidth.Text = 9.ToString();
-                    FieldHeight.Text = 7.ToString();
-                    break;
-                case 3:
-                    FieldWidth.Text = 10.ToString();
-                    FieldHeight.Text = 7.ToString();
-                    break;
-                default:
-                    FieldWidth.Enabled = FieldHeight.Enabled = true;
-                    return;
-            }
-            FieldWidth.Enabled = FieldHeight.Enabled = false;
-        }
 
         private void ClickedStart(object sender, EventArgs e)
         {
-            if (!int.TryParse(FieldWidth.Text, out var width) || 
-                !int.TryParse(FieldHeight.Text, out var height) ||
-                !int.TryParse(WinCountInput.Text, out var toWin))
+            var count = (int) WinCount.Value;
+            var width = (int) FieldWidth.Value;
+            var height = (int) FieldHeight.Value;
+            if (count == 0 || width == 0 || height == 0)
             {
-                MessageBox.Show("Неправильно введены игровые настройки", "Ошибка ввода", MessageBoxButtons.OK);
+                MessageBox.Show("Неправильно введены игровые настройки, значения не могут быть нулевыми", 
+                    "Ошибка ввода", MessageBoxButtons.OK);
                 return;
             }
 
@@ -98,7 +60,7 @@ namespace Connect4.Core
             {
                 Game.Initiaize(width, height, 
                     Radio1P.Checked, CheckFirstMove.Checked,
-                    toWin, Difficulty.SelectedIndex + 1, Algorithm.SelectedIndex);
+                    count, Difficulty.SelectedIndex + 1, Algorithm.SelectedIndex);
                 InititalizeField(width, height);
                 BuildField(Game.Board.Fields);
                 EnableGame(true);

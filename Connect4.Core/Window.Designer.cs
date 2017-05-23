@@ -34,21 +34,22 @@
             this.CheckFirstMove = new System.Windows.Forms.CheckBox();
             this.LabelSettings = new System.Windows.Forms.Label();
             this.ButtonStart = new System.Windows.Forms.Button();
-            this.FieldSizes = new System.Windows.Forms.ComboBox();
             this.LabelField = new System.Windows.Forms.Label();
-            this.FieldHeight = new System.Windows.Forms.TextBox();
-            this.FieldWidth = new System.Windows.Forms.TextBox();
-            this.LabelX = new System.Windows.Forms.Label();
             this.Settings = new System.Windows.Forms.Panel();
-            this.WinCountInput = new System.Windows.Forms.TextBox();
+            this.WinCount = new System.Windows.Forms.NumericUpDown();
             this.LabelWin = new System.Windows.Forms.Label();
-            this.WinCount = new System.Windows.Forms.ComboBox();
             this.Algorithm = new System.Windows.Forms.ComboBox();
             this.LabelAlgo = new System.Windows.Forms.Label();
             this.Difficulty = new System.Windows.Forms.ComboBox();
             this.LabelDifficulty = new System.Windows.Forms.Label();
             this.Field = new System.Windows.Forms.Panel();
+            this.LabelX = new System.Windows.Forms.Label();
+            this.FieldWidth = new System.Windows.Forms.NumericUpDown();
+            this.FieldHeight = new System.Windows.Forms.NumericUpDown();
             this.Settings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WinCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FieldWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FieldHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // Radio1P
@@ -106,29 +107,13 @@
             // 
             // ButtonStart
             // 
-            this.ButtonStart.Location = new System.Drawing.Point(12, 395);
+            this.ButtonStart.Location = new System.Drawing.Point(12, 364);
             this.ButtonStart.Name = "ButtonStart";
-            this.ButtonStart.Size = new System.Drawing.Size(616, 23);
+            this.ButtonStart.Size = new System.Drawing.Size(593, 23);
             this.ButtonStart.TabIndex = 5;
             this.ButtonStart.Text = "MAY THE BATTLE BEGIN";
             this.ButtonStart.UseVisualStyleBackColor = true;
             this.ButtonStart.Click += new System.EventHandler(this.ClickedStart);
-            // 
-            // FieldSizes
-            // 
-            this.FieldSizes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FieldSizes.FormattingEnabled = true;
-            this.FieldSizes.Items.AddRange(new object[] {
-            "7 x 6",
-            "8 x 7",
-            "9 x 7",
-            "10 x 7",
-            "Свое"});
-            this.FieldSizes.Location = new System.Drawing.Point(14, 143);
-            this.FieldSizes.Name = "FieldSizes";
-            this.FieldSizes.Size = new System.Drawing.Size(121, 21);
-            this.FieldSizes.TabIndex = 6;
-            this.FieldSizes.SelectedIndexChanged += new System.EventHandler(this.SelectedField);
             // 
             // LabelField
             // 
@@ -139,38 +124,14 @@
             this.LabelField.TabIndex = 7;
             this.LabelField.Text = "Игровое поле";
             // 
-            // FieldHeight
-            // 
-            this.FieldHeight.Enabled = false;
-            this.FieldHeight.Location = new System.Drawing.Point(90, 170);
-            this.FieldHeight.Name = "FieldHeight";
-            this.FieldHeight.Size = new System.Drawing.Size(45, 20);
-            this.FieldHeight.TabIndex = 8;
-            // 
-            // FieldWidth
-            // 
-            this.FieldWidth.Enabled = false;
-            this.FieldWidth.Location = new System.Drawing.Point(14, 170);
-            this.FieldWidth.Name = "FieldWidth";
-            this.FieldWidth.Size = new System.Drawing.Size(48, 20);
-            this.FieldWidth.TabIndex = 9;
-            // 
-            // LabelX
-            // 
-            this.LabelX.AutoSize = true;
-            this.LabelX.Location = new System.Drawing.Point(68, 173);
-            this.LabelX.Name = "LabelX";
-            this.LabelX.Size = new System.Drawing.Size(14, 13);
-            this.LabelX.TabIndex = 10;
-            this.LabelX.Text = "X";
-            // 
             // Settings
             // 
             this.Settings.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.Settings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Settings.Controls.Add(this.WinCountInput);
-            this.Settings.Controls.Add(this.LabelWin);
+            this.Settings.Controls.Add(this.FieldHeight);
+            this.Settings.Controls.Add(this.FieldWidth);
             this.Settings.Controls.Add(this.WinCount);
+            this.Settings.Controls.Add(this.LabelWin);
             this.Settings.Controls.Add(this.Algorithm);
             this.Settings.Controls.Add(this.LabelAlgo);
             this.Settings.Controls.Add(this.Difficulty);
@@ -178,49 +139,35 @@
             this.Settings.Controls.Add(this.LabelSettings);
             this.Settings.Controls.Add(this.LabelX);
             this.Settings.Controls.Add(this.Radio1P);
-            this.Settings.Controls.Add(this.FieldWidth);
             this.Settings.Controls.Add(this.Radio2P);
-            this.Settings.Controls.Add(this.FieldHeight);
             this.Settings.Controls.Add(this.RadioAI);
             this.Settings.Controls.Add(this.LabelField);
             this.Settings.Controls.Add(this.CheckFirstMove);
-            this.Settings.Controls.Add(this.FieldSizes);
             this.Settings.Location = new System.Drawing.Point(12, 12);
             this.Settings.Name = "Settings";
-            this.Settings.Size = new System.Drawing.Size(157, 377);
+            this.Settings.Size = new System.Drawing.Size(157, 346);
             this.Settings.TabIndex = 11;
             // 
-            // WinCountInput
+            // WinCount
             // 
-            this.WinCountInput.Enabled = false;
-            this.WinCountInput.Location = new System.Drawing.Point(90, 223);
-            this.WinCountInput.Name = "WinCountInput";
-            this.WinCountInput.Size = new System.Drawing.Size(45, 20);
-            this.WinCountInput.TabIndex = 17;
+            this.WinCount.Location = new System.Drawing.Point(16, 195);
+            this.WinCount.Name = "WinCount";
+            this.WinCount.Size = new System.Drawing.Size(128, 20);
+            this.WinCount.TabIndex = 18;
+            this.WinCount.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
             // LabelWin
             // 
             this.LabelWin.AutoSize = true;
-            this.LabelWin.Location = new System.Drawing.Point(14, 207);
+            this.LabelWin.Location = new System.Drawing.Point(14, 179);
             this.LabelWin.Name = "LabelWin";
             this.LabelWin.Size = new System.Drawing.Size(100, 13);
             this.LabelWin.TabIndex = 16;
             this.LabelWin.Text = "Фишек до победы";
-            // 
-            // WinCount
-            // 
-            this.WinCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.WinCount.FormattingEnabled = true;
-            this.WinCount.Items.AddRange(new object[] {
-            "4",
-            "5",
-            "6",
-            "Свое"});
-            this.WinCount.Location = new System.Drawing.Point(14, 223);
-            this.WinCount.Name = "WinCount";
-            this.WinCount.Size = new System.Drawing.Size(71, 21);
-            this.WinCount.TabIndex = 15;
-            this.WinCount.SelectedIndexChanged += new System.EventHandler(this.SelectedWinCount);
             // 
             // Algorithm
             // 
@@ -230,15 +177,15 @@
             "Случайный",
             "МиниМакс",
             "Альфа-Бета"});
-            this.Algorithm.Location = new System.Drawing.Point(14, 335);
+            this.Algorithm.Location = new System.Drawing.Point(17, 302);
             this.Algorithm.Name = "Algorithm";
-            this.Algorithm.Size = new System.Drawing.Size(121, 21);
+            this.Algorithm.Size = new System.Drawing.Size(127, 21);
             this.Algorithm.TabIndex = 14;
             // 
             // LabelAlgo
             // 
             this.LabelAlgo.AutoSize = true;
-            this.LabelAlgo.Location = new System.Drawing.Point(14, 319);
+            this.LabelAlgo.Location = new System.Drawing.Point(14, 286);
             this.LabelAlgo.Name = "LabelAlgo";
             this.LabelAlgo.Size = new System.Drawing.Size(56, 13);
             this.LabelAlgo.TabIndex = 13;
@@ -252,15 +199,15 @@
             "Легкий",
             "Средний",
             "Сложный"});
-            this.Difficulty.Location = new System.Drawing.Point(14, 282);
+            this.Difficulty.Location = new System.Drawing.Point(16, 249);
             this.Difficulty.Name = "Difficulty";
-            this.Difficulty.Size = new System.Drawing.Size(121, 21);
+            this.Difficulty.Size = new System.Drawing.Size(128, 21);
             this.Difficulty.TabIndex = 12;
             // 
             // LabelDifficulty
             // 
             this.LabelDifficulty.AutoSize = true;
-            this.LabelDifficulty.Location = new System.Drawing.Point(14, 266);
+            this.LabelDifficulty.Location = new System.Drawing.Point(15, 233);
             this.LabelDifficulty.Name = "LabelDifficulty";
             this.LabelDifficulty.Size = new System.Drawing.Size(129, 13);
             this.LabelDifficulty.TabIndex = 11;
@@ -272,23 +219,59 @@
             this.Field.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Field.Location = new System.Drawing.Point(176, 12);
             this.Field.Name = "Field";
-            this.Field.Size = new System.Drawing.Size(452, 377);
+            this.Field.Size = new System.Drawing.Size(429, 346);
             this.Field.TabIndex = 12;
+            // 
+            // LabelX
+            // 
+            this.LabelX.AutoSize = true;
+            this.LabelX.Location = new System.Drawing.Point(71, 145);
+            this.LabelX.Name = "LabelX";
+            this.LabelX.Size = new System.Drawing.Size(14, 13);
+            this.LabelX.TabIndex = 10;
+            this.LabelX.Text = "X";
+            // 
+            // FieldWidth
+            // 
+            this.FieldWidth.Location = new System.Drawing.Point(16, 143);
+            this.FieldWidth.Name = "FieldWidth";
+            this.FieldWidth.Size = new System.Drawing.Size(54, 20);
+            this.FieldWidth.TabIndex = 19;
+            this.FieldWidth.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
+            // FieldHeight
+            // 
+            this.FieldHeight.Location = new System.Drawing.Point(88, 143);
+            this.FieldHeight.Name = "FieldHeight";
+            this.FieldHeight.Size = new System.Drawing.Size(56, 20);
+            this.FieldHeight.TabIndex = 20;
+            this.FieldHeight.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
             // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 423);
+            this.ClientSize = new System.Drawing.Size(616, 396);
             this.Controls.Add(this.Field);
             this.Controls.Add(this.Settings);
             this.Controls.Add(this.ButtonStart);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Window";
-            this.Text = "Connect4";
+            this.Text = "Гравитрипс";
             this.Settings.ResumeLayout(false);
             this.Settings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WinCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FieldWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FieldHeight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,11 +283,7 @@
         private System.Windows.Forms.CheckBox CheckFirstMove;
         private System.Windows.Forms.Label LabelSettings;
         private System.Windows.Forms.Button ButtonStart;
-        private System.Windows.Forms.ComboBox FieldSizes;
         private System.Windows.Forms.Label LabelField;
-        private System.Windows.Forms.TextBox FieldHeight;
-        private System.Windows.Forms.TextBox FieldWidth;
-        private System.Windows.Forms.Label LabelX;
         private System.Windows.Forms.Panel Settings;
         private System.Windows.Forms.Panel Field;
         private System.Windows.Forms.RadioButton RadioAI;
@@ -312,9 +291,11 @@
         private System.Windows.Forms.Label LabelDifficulty;
         private System.Windows.Forms.ComboBox Algorithm;
         private System.Windows.Forms.Label LabelAlgo;
-        private System.Windows.Forms.TextBox WinCountInput;
         private System.Windows.Forms.Label LabelWin;
-        private System.Windows.Forms.ComboBox WinCount;
+        private System.Windows.Forms.NumericUpDown WinCount;
+        private System.Windows.Forms.NumericUpDown FieldHeight;
+        private System.Windows.Forms.NumericUpDown FieldWidth;
+        private System.Windows.Forms.Label LabelX;
     }
 }
 
