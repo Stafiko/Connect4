@@ -22,15 +22,9 @@ namespace Connect4.Core
         public AI(Game.Difficulty diff, Algorith algo)
         {
             _algo = algo;
-            switch (algo)
-            {
-                case Algorith.AlphaBeta:_depth = (int) diff * 4;
-                    break;
-                case Algorith.MinMax: _depth = (int) diff * 2;
-                    break;
-                default: _depth = 0;
-                    break;
-            }
+            _depth = _algo == Algorith.AlphaBeta
+                ? (int) diff * 3
+                : (int) diff * 2;
         }
 
         public AI() : this(Game.Difficulty.Medium, Algorith.MinMax) { }
@@ -40,27 +34,18 @@ namespace Connect4.Core
             _moves = new List<Tuple<int, int>>();
             for (int i = 0; i < board.Columns; i++)
             {
-                int score;
-                if (!board.DropCoin(Game.Player.Computer, i)) continue;
-                switch (_algo)
-                {
-                    case Algorith.AlphaBeta:
-                        score = AlphaBeta(board, _alpha, _beta, _depth, false);
-                        break;
-                    case Algorith.MinMax:
-                        score = MinMax(board, _depth, false);
-                        break;
-                    default:
-                        score = 0;
-                        break;
-                }
+                if (!board.MakeMove(i, true, Game.Player.Computer)) continue;
+                var score = _algo == Algorith.AlphaBeta
+                    ? AlphaBeta(board, _alpha, _beta, _depth, false)
+                    : _algo == Algorith.MinMax
+                        ? MinMax(board, _depth, false)
+                        : 0;
                 _moves.Add(Tuple.Create(i, score));
-                board.RemoveCoin(i);
+                board.MakeMove(i);
             }
 
             var random = new Random();
-            var maxMoveScore = _moves.Max(t => t.Item2);
-            var bestMoves = _moves.Where(t => t.Item2 == maxMoveScore).ToList();
+            var bestMoves = _moves.Where(t => t.Item2 == _moves.Max(m => m.Item2)).ToList();
             return bestMoves[random.Next(0, bestMoves.Count)].Item1;
         }
 
@@ -72,10 +57,10 @@ namespace Connect4.Core
             score = player ? -1 : 1;
             for (int i = 0; i < board.Columns; i++)
             {
-                if (!board.DropCoin(player ? Game.Player.Computer : Game.Player.Human, i)) continue;
+                if (!board.MakeMove(i, true, player ? Game.Player.Computer : Game.Player.Human)) continue;
                 var minMax = MinMax(board, depth - 1, !player);
                 score = player ? Math.Max(score, minMax) : Math.Min(score, minMax);
-                board.RemoveCoin(i);
+                board.MakeMove(i);
             }
 
             return score;
@@ -89,9 +74,9 @@ namespace Connect4.Core
 
             for (int i = 0; i < board.Columns; i++)
             {
-                if (!board.DropCoin(player ? Game.Player.Computer : Game.Player.Human, i)) continue;
+                if (!board.MakeMove(i, true, player ? Game.Player.Computer : Game.Player.Human)) continue;
                 var value = -AlphaBeta(board, -score, -alpha, depth-1, !player);
-                board.RemoveCoin(i);
+                board.MakeMove(i);
                 if (value < score) score = value;
                 if (score <= alpha) return score;
             }
@@ -103,15 +88,16 @@ namespace Connect4.Core
             score = 0;
             if (board.FullBoard) return true;
             var winner = board.Winner;
+            var isMinMax = _algo == Algorith.MinMax;
             switch (winner)
             {
                 case Game.Player.Human:
                     score = player ? depth : -depth;
-                    if (_algo == Algorith.MinMax) score = -depth;
+                    if (isMinMax) score = -depth;
                     return true;
                 case Game.Player.Computer:
                     score = player ? -depth : depth;
-                    if (_algo == Algorith.MinMax) score = depth;
+                    if (isMinMax) score = depth;
                     return true;
             }
             return depth <= 0;

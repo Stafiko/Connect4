@@ -16,7 +16,7 @@ namespace Connect4.Core
         public static bool GameOver => _gameOver;
       
 
-        public static void GameInitiaize(int width, int height, 
+        public static void Initiaize(int width, int height, 
             bool versusAI, bool first, int difficulty = 2, int algo = 2)
         {
             _ai = null;
@@ -33,36 +33,37 @@ namespace Connect4.Core
 
             if (first) return;
             _player = Player.Computer;
-            GameMove(0, out var temp);
+            Move(0, out var temp);
         }
 
-        public static bool GameMove(int move, out int?[,] field)
+        public static bool Move(int move, out int?[,] field)
         {
             field = _board.Fields;
 
             if (_player == Player.Human || _ai == null)
             {
-                if (!_board.DropCoin(_player, move)) return false;
+                if (!_board.MakeMove(move, true, _player)) return false;
                 _player = ~_player;
                 if (_board.FullBoard || _board.Winner == Player.Human)
                 {
                     _gameOver = true;
-                    GameIsOver();
+                    Over();
                     return true;
                 }
             }
+
             if(_ai != null)
             {
-                _board.DropCoin(_player, _ai.FindMove(_board));
+                _board.MakeMove(_ai.FindMove(_board), true, _player);
                 _player = ~_player;
             }
 
             _gameOver = _board.Winner == Player.Human || _board.Winner == Player.Computer || _board.FullBoard;
-            if (_gameOver) GameIsOver();
+            if (_gameOver) Over();
             return true;
         }
 
-        private static void GameIsOver()
+        private static void Over()
         {
             if (_ai == null)
                 if (_board.Winner != null)

@@ -59,7 +59,7 @@
             this.Radio1P.TabStop = true;
             this.Radio1P.Text = "1 Игрок";
             this.Radio1P.UseVisualStyleBackColor = true;
-            this.Radio1P.CheckedChanged += new System.EventHandler(this.Select1P);
+            this.Radio1P.CheckedChanged += new System.EventHandler(this.Selected1P);
             // 
             // Radio2P
             // 
@@ -109,7 +109,7 @@
             this.ButtonStart.TabIndex = 5;
             this.ButtonStart.Text = "MAY THE BATTLE BEGIN";
             this.ButtonStart.UseVisualStyleBackColor = true;
-            this.ButtonStart.Click += new System.EventHandler(this.ClickStart);
+            this.ButtonStart.Click += new System.EventHandler(this.ClickedStart);
             // 
             // FieldSizes
             // 
@@ -125,7 +125,7 @@
             this.FieldSizes.Name = "FieldSizes";
             this.FieldSizes.Size = new System.Drawing.Size(121, 21);
             this.FieldSizes.TabIndex = 6;
-            this.FieldSizes.SelectedIndexChanged += new System.EventHandler(this.SelectField);
+            this.FieldSizes.SelectedIndexChanged += new System.EventHandler(this.SelectedField);
             // 
             // LabelField
             // 
