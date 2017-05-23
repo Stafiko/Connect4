@@ -17,14 +17,14 @@ namespace Connect4.Core
       
 
         public static void Initiaize(int width, int height, 
-            bool versusAI, bool first, int difficulty = 2, int algo = 2)
+            bool versusAI, bool first, int toWin = 4, int difficulty = 2, int algo = 2)
         {
             _ai = null;
             _gameOver = false;
             _player = Player.Human;
             _boardWidth = width;
             _boardHeight = height;
-            _board = new Board(_boardWidth, _boardHeight);
+            _board = new Board(_boardWidth, _boardHeight, toWin);
 
             if (!versusAI) return;
             var diff = (Difficulty)difficulty;

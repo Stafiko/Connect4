@@ -8,7 +8,7 @@
         private bool _changed;
         private int _colums;
         private int _rows;
-        private int _line = 4;
+        private int _line;
 
         public int Columns => _colums;
         public int Rows => _rows;

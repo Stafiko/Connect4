@@ -23,6 +23,7 @@ namespace Connect4.Core
             FieldSizes.SelectedIndex = 0;
             Difficulty.SelectedIndex = 1;
             Algorithm.SelectedIndex = 1;
+            WinCount.SelectedIndex = 0;
             Radio1P.Checked = true;
             CheckFirstMove.Checked = true;
         }
@@ -30,12 +31,25 @@ namespace Connect4.Core
         private void EnableGame(bool enable)
         {
             _enabled = enable;
-            Radio1P.Enabled = Radio2P.Enabled = FieldSizes.Enabled = 
+            Radio1P.Enabled = Radio2P.Enabled = FieldSizes.Enabled = WinCount.Enabled = 
             Difficulty.Enabled = Algorithm.Enabled = CheckFirstMove.Enabled = !enable;
             Field.Enabled = enable;
 
             if(!enable) Selected1P();
             ButtonStart.Text = enable ? "LETS PLAY THIS AGAIN" : "MAY THE BATTLE BEGIN";
+        }
+
+
+        private void SelectedWinCount(object sender, EventArgs e)
+        {
+            var selected = WinCount.SelectedIndex;
+            if (selected < 3) WinCountInput.Text = (selected + 4).ToString();
+            else
+            {
+                WinCountInput.Enabled = true;
+                return;
+            }
+            WinCountInput.Enabled = false;
         }
 
         private void Selected1P(object sender = null, EventArgs e = null)
@@ -72,16 +86,19 @@ namespace Connect4.Core
 
         private void ClickedStart(object sender, EventArgs e)
         {
-            if (!int.TryParse(FieldWidth.Text, out var width) || !int.TryParse(FieldHeight.Text, out var height))
+            if (!int.TryParse(FieldWidth.Text, out var width) || 
+                !int.TryParse(FieldHeight.Text, out var height) ||
+                !int.TryParse(WinCountInput.Text, out var toWin))
             {
-                MessageBox.Show("Неправильно введены размеры поля", "Ошибка ввода", MessageBoxButtons.OK);
+                MessageBox.Show("Неправильно введены игровые настройки", "Ошибка ввода", MessageBoxButtons.OK);
                 return;
             }
+
             if (!_enabled)
             {
                 Game.Initiaize(width, height, 
                     Radio1P.Checked, CheckFirstMove.Checked,
-                    Difficulty.SelectedIndex + 1, Algorithm.SelectedIndex);
+                    toWin, Difficulty.SelectedIndex + 1, Algorithm.SelectedIndex);
                 InititalizeField(width, height);
                 BuildField(Game.Board.Fields);
                 EnableGame(true);
